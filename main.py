@@ -15,8 +15,8 @@ class formula :
             globals()[self.args[i]] = args[i]
         return eval(self.formula)
     
-    def info(self):
-        print(self.formula)
+    def arg_n_info(self):
+        return len(self.args)
 
 class CMS :
     def __init__(self,formula,num):
@@ -30,6 +30,22 @@ class CMS :
         self.num += 1
         return return_n
     
-class formular:
+class gene:
     def __init__(self,gene):
         self.gene:str = gene
+        if self.gene == "":
+            raise ValueError("Gene cannot be empty")
+    
+    def calculate(self):
+        gene = self.gene
+        gene = gene.split("Z")
+        for i in range(len(gene)):
+            if "N" in gene[i] :
+                gene[i] = "n"
+            else :
+                gene[i] = int("0x64",gene[i])
+        n_args = 0
+        for k in range(len(gene)) :
+            if n_args == 0 :
+                formula = gene[k]
+                
